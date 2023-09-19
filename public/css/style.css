@@ -1,3 +1,46 @@
 body{
-    background-color: salmon;
+    background-color: #f5f5f5;
+}
+
+
+/* form login */
+.form-signin {
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    text-align: center;
+}
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+.form-signin input[type="email"] {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* form register */
+.form-register {
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    text-align: center;
+}
+.form-register .form-floating:focus-within {
+    z-index: 2;
+}
+.form-register input[type="text"]#name {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-register input[type="text"]#username,
+.form-register input[type="email"] {
+    border-radius: 0;
+}
+.form-register input[type="password"] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }

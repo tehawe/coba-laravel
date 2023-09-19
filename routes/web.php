@@ -1,10 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
-use App\Models\Category;
 use App\Models\Post;
+
 use App\Models\User;
+use App\Models\Category;
+use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,13 +25,13 @@ use App\Models\User;
 Route::get('/', function () {
     return view('home', [
         'title' => 'Home',
-        'active' => 'home'
+        'active' => 'home',
     ]);
 });
 Route::get('/home', function () {
     return view('home', [
         'title' => 'Home',
-        'active' => 'home'
+        'active' => 'home',
     ]);
 });
 
@@ -65,3 +70,11 @@ Route::get('/authors/{author:username}', function (User $author) {
         'posts' => $author->posts->load('author', 'category'),
     ]);
 });
+
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/dashboard', [DashboardController::class, 'index']);
