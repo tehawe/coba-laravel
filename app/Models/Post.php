@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -32,8 +31,7 @@ class Post extends Model
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {
-            return $query->where('title', 'like', '%' . $search . '%')
-                ->orWhere('body', 'like', '%' . $search . '%');
+            return $query->where('title', 'like', '%' . $search . '%')->orWhere('body', 'like', '%' . $search . '%');
         });
 
         $query->when($filters['category'] ?? false, function ($query, $category) {
@@ -42,6 +40,11 @@ class Post extends Model
             });
         });
 
-        $query->when($filters['author'] ?? false, fn ($query, $author) => $query->whereHas('author', fn ($query) => $query->where('username', $author)));
+        $query->when($filters['author'] ?? false, fn($query, $author) => $query->whereHas('author', fn($query) => $query->where('username', $author)));
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }
