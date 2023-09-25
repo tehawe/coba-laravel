@@ -3,8 +3,15 @@
 @section('container')
     <div class="container">
         <div class="row">
-            <h2 class="py-2 border-bottom">My Posts</h2>
+            <h2 class="py-3 border-bottom">My Posts</h2>
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="table-responsive small">
+                <a href="/dashboard/posts/create" class="btn btn-info mb-3"><i class="bi-plus-circle"></i> Add New Post</a>
                 <table class="table table-striped table-sm">
                     <thead>
                         <tr>
