@@ -12,18 +12,16 @@
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('/dashboard/posts*') ? 'active' : '' }}" href="/dashboard/posts"><i class="bi-file-earmark-post" /></i> My Posts</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/categories') ? 'active' : '' }}" href="/dashboard/categories"><i class="bi-tags" /></i> Categories</a>
-                </li>
             </ul>
-
-            <hr class="my-3">
-
-            <ul class="nav flex-column mb-auto">
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#"><i class="bi-box-arrow-right"></i> Logout</a>
-                </li>
-            </ul>
+            @can('admin')
+                <hr class="my-3">
+                <h5 class="sidebar-heading d-flex justify-content-between align-items-center text-muted px-3">Administrator</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/categories*') ? 'active' : '' }}" href="/dashboard/categories"><i class="bi-tags" /></i>Post Categories</a>
+                    </li>
+                </ul>
+            @endcan
         </div>
     </div>
 </div>

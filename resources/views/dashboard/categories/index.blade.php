@@ -3,38 +3,36 @@
 @section('container')
     <div class="container">
         <div class="row">
-            <h2 class="py-3 border-bottom">My Posts</h2>
+            <h2 class="py-3 border-bottom">My Categories</h2>
             @if (session()->has('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="alert alert-success alert-dismissible fade show col-lg-8" role="alert">
                     {{ session('success') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            <div class="table-responsive small">
-                <a href="/dashboard/posts/create" class="btn btn-info mb-3"><i class="bi-plus-circle"></i> Add New Post</a>
+            <div class="table-responsive small col-lg-8">
+                <a href="/dashboard/categories/create" class="btn btn-info mb-3"><i class="bi-plus-circle"></i> Add New Category</a>
                 <table class="table table-striped table-sm">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Category</th>
+                            <th scope="col">Name</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($posts as $post)
+                        @foreach ($categories as $category)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $post->title }}</td>
-                                <td>{{ $post->category->name }}</td>
+                                <td>{{ $category->name }}</td>
                                 <td>
-                                    <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info"><i class="bi-journal-check"></i></a>
-                                    <a href="/dashboard/posts/{{ $post->slug }}/edit" class="badge bg-warning"><i class="bi-pencil-square"></i></a>
-                                    <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="d-inline">
+                                    <a href="/dashboard/categories/{{ $category->slug }}/edit" class="badge bg-warning"><i class="bi-pencil-square"></i></a>
+                                    <form action="/dashboard/categories/{{ $category->slug }}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button type="submit" class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><i class="bi-trash"></i></button>
                                     </form>
+
                                 </td>
                             </tr>
                         @endforeach
